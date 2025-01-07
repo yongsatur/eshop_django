@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="confirm">
+    <h2>Ваш заказ был принят!</h2>
+    <div>
+        <h3>{{order.last_name}} {{order.first_name}}, спасибо за то, что выбрали наш магазин!</h3>
+        <p>Ваш заказ <b>№{{order.id}}</b> будет доставлен на указанный адрес:</p>
+        <p><b>{{order.address}}</b>.</p>
+        <p>Когда заказ будет готов к доставке, с вами свяжется курьер по номеру телефона: </p>
+        <p><b>{{order.phone}}</b> для уточнения времени доставки.</p>
+        <p>Вес заказа: <b>{{order.get_total_weight}} г.</b> Стоимость: <b>{{order.get_total_amount}} ₽</b></p>
+        <p></p>
+        <p>Будем рады видеть вас снова!</p>
+        <h3>Состав заказа:</h3>
+        <div class="catalog">
+            <div class="products">
+                {% for item in order.order_items.all %}
+                    <div class="product">
+                        {% if item.productID.image %}
+                            <img src="{{item.productID.image.url}}" alt="{{item.productID.name}}">
+                        {% else %}
+                            <img src="{% static 'images/no_image.jpg' %}">
+                        {% endif %}
+                        <h3>{{item.productID.name}}</h3>
+                        <p>{{item.productID.price}} ₽</p>
+                        <p>Количество: {{item.quantity}}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="sort">
+    <h2>Каталог</h2>
+    <form class="search" action="{% url 'products' %}" method="GET">
+        <div class="select">
+            <p>Сортировка по: </p>
+            <select name="select">
+                <option>По умолчанию</option>
+                <option value="asc" {% if sort == 'asc' %} selected {% endif %}>По возрастанию цены</option>
+                <option value="desc" {% if sort == 'desc' %} selected {% endif %}>По убыванию цены</option>
+            </select>
+        </div>
+        <button type="submit" title="Сортировать">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" 
+                stroke-width="1.5" d="M21.25 12H8.895m-4.361 0H2.75m18.5 6.607h-5.748m-4.361 0H2.75m18.5-13.214h-3.105m-4.361 
+                0H2.75m13.214 2.18a2.18 2.18 0 1 0 0-4.36a2.18 2.18 0 0 0 0 4.36Zm-9.25 6.607a2.18 2.18 0 1 0 0-4.36a2.18 
+                2.18 0 0 0 0 4.36Zm6.607 6.608a2.18 2.18 0 1 0 0-4.361a2.18 2.18 0 0 0 0 4.36Z"/>
+            </svg>
+        </button>
+    </form>
+</section>
+
+<section class="catalog">
+    <div class="categories">
+        {% if categoryID.name %} 
+            <a href="/catalog/">
+                <h3>Все товары</h3>
+            </a>
+        {% else %}
+            <a href="/catalog/">
+                <h3 class="tab">Все товары</h3>
+            </a>
+        {% endif %}
+        {% for category in categories %}
+            <a href="{% url 'products_by_category' category.slug %}">
+                {% if categoryID.name == category.name %} 
+                    <h3 class="tab">{{category.name}}</h3>
+                {% else %}
+                    <h3>{{category.name}}</h3>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+    <div class="products">
+        {% for product in products %}
+            <a class="product" href="{% url 'product' product.id product.slug %}">
+                {% if product.image %}
+                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                {% else %}
+                    <img src="{% static 'images/no_image.jpg' %}">
+                {% endif %}
+                <h3>{{product.name}}</h3>
+                <p>{{product.price}} ₽</p>
+                <form action="{% url 'cart_add' product.id %}" method="POST" class="cartAddForm" id="cartAddForm">
+                    {% csrf_token %}
+                    <button type="submit">В корзину</button>
+                </form>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

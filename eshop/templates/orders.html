@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="user">
+    <h2>Заказы</h2>
+    <div class="user_orders">
+        {% if orders %}
+            <div class="orders">
+                {% for order in orders  %}
+                    <div class="order">
+                        <div class="first">
+                            <div class="order_list">
+                                <p class="date">{{order.date}}</p>
+                                {% if order.done %}
+                                    <p><b>Завершен</b></p>
+                                {% else %}
+                                    <p><b>В процессе</b></p>
+                                {% endif %}
+                            </div>
+                            {% for item in order_items  %}
+                                {% if item.orderID == order %}
+                                    <div class="order_list">
+                                        <p>{{item.productID.name}} - {{item.quantity}}</p>
+                                        <p>{{item.productID.price}} ₽</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <p><b>Вес: {{order.get_total_weight}} г.</b></p>
+                        </div>
+                        <p class="price">{{order.get_total_amount}} ₽</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3>У вас нет заказов</h3>
+        {% endif %}
+        <div class="account">
+            <img src="{% static 'images/user.png' %}" alt="Аватар пользователя">
+            <div class="name">
+                <p>{{user.last_name}}</p>
+                <p>{{user.first_name}}</p>
+            </div>
+            <p>{{user.email}}</p>
+            <a href="{% url 'change' %}"><button type="submit">Изменить данные аккаунта</button></a>
+            <a href="{% url 'reset' %}"><button type="submit">Изменить пароль</button></a>
+            <a href="{% url 'exit' %}"><button type="submit">Выйти</button></a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

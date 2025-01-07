@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="cart">
+    <h2>Корзина</h2>
+    {% if cart %}
+        <div class="cart_data">
+            <div class="product_list">
+                {% for item in cart.cart_items.all %}
+                    <a class="product" href="{% url 'product' item.productID.id item.productID.slug %}">
+                        <img src="{{item.productID.image.url}}">
+                        <div class="product_data">
+                            <h3>{{item.productID.name}}</h3>
+                            <div class="items">
+                                <p>{{item.productID.price}} ₽</p>
+                                <p>x</p>
+                                <p>{{item.quantity}}</p>
+                                <p>=</p>
+                                <p>{{item.get_amount}} ₽</p>
+                            </div>
+                            <div class="buttons">
+                                <form action="{% url 'cart_delete' item.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="minus" type="submit" title="Удалить">-</button>
+                                </form>
+                                <p>{{item.quantity}}</p>
+                                <form action="{% url 'cart_append' item.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="plus" type="submit" title="Добавить">+</button>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="data">
+                <div class="cost">
+                    <h3>Итого к оплате:</h3>
+                    <h3>{{cart.get_total_amount}} ₽</h3>
+                </div>
+                <form action="{% url 'create_order' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Оформить заказ</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <h3>Вы не добавили товары в корзину</h3>
+    {% endif %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="login">
+    <div>
+        <h2>Заполните данные для доставки</h2>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" action="{% url 'create_order' %}">
+            {% csrf_token %}
+            <label for="last_name">Введите фамилию:</label>
+            <input type="text" id="last_name" name="last_name" autocomplete="on" placeholder="Фамилия" required>
+            <label for="first_name">Введите имя:</label>
+            <input type="text" id="first_name" name="first_name" autocomplete="on" placeholder="Имя" required>
+            <label for="phone">Введите номер телефона:</label>
+            <input type="tel" id="phone" name="phone" autocomplete="on" pattern="\+?[0-9\s\-\(\)]+" maxlength="20" placeholder="+7 (___) ___-__-__" required>
+            <label for="address">Введите адрес доставки:</label>
+            <input type="text" id="address" name="address" autocomplete="off" placeholder="Адрес доставки" required>
+            <button type="submit">Подтвердить доставку заказа</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

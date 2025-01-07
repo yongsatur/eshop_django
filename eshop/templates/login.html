@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="login">
+    <div>
+        <h2>Вход в личный кабинет</h2>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" action="{% url 'authorization' %}">
+            {% csrf_token %}
+            <label for="username">Введите логин:</label>
+            <input type="text" id="username" name="username" autocomplete="on" placeholder="Логин" required>
+            <label for="password">Введите пароль:</label>
+            <input type="password" id="password" name="password" autocomplete="off" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <div class="to">
+            <p>У Вас нет аккаунта?</p>
+            <a href="/registration/">Зарегистрироваться</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

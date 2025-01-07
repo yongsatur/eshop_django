@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'images/logo.png' %}" type="image/png" rel="icon">
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Rubik+Vinyl&display=swap" 
+        rel="stylesheet">
+
+    <title>AssorTEA - магазин различных сортов чая</title>
+</head>
+<body>
+    <header>
+        <nav class="navigation">
+            <ul class="header_menu">
+                <li class="menu_item">
+                    <a href="/">Главная</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/catalog/">Каталог</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/orders/">Заказы</a>
+                </li>
+                <li class="menu_item">
+                    <a href="{% url 'cart' %}">Корзина</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#">О нас</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="social_items">
+            <a href="#" target="_blank" title="Телеграм">
+                <img src="{% static '/images/social/telegram.png' %}"></span>
+            </a>
+            <a href="#" target="_blank" title="ВКонтакте">
+                <img src="{% static '/images/social/vk.png' %}"></span>
+            </a>
+            <a href="#" target="_blank" title="Одноклассники">
+                <img src="{% static '/images/social/odnoklassniki.png' %}"></span>
+            </a>
+        </div>
+    </header>
+
+    <section class="header_main">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="ASSORTEA">
+            <h1><b>Assor</b>TEA</h1>
+            <a href="/catalog/">
+                <button type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+                        <path fill="currentColor" d="M4 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 12a1 1 
+                            0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm1-7a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H5Z"/>
+                    </svg>
+                    Каталог
+                </button>
+            </a>
+            <form class="search" action="{% url 'products' %}" method="GET">
+                {% if query %}
+                    <input name="query" value="{{query}}" type="search" placeholder="Поиск">
+                {% else %}
+                    <input name="query" type="search" placeholder="Поиск">
+                {% endif %}
+                <button type="submit" title="Найти">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M10 4a6 6 0 1 0 0 12a6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 
+                        4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <div class="users_menu">
+            <ul>
+                <li class="menu_item">
+                    <a href="/orders/" title="Личный кабинет">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                            <g fill="none" stroke="currentColor" stroke-width="1.2">
+                                <path stroke-linecap="round" stroke-linejoin="round" 
+                                d="M6.022 20.504c.284-1.394.974-2.138 2.076-3.038a6.167 6.167 0 0 1 7.805 0c1.101.9 
+                                1.882 1.644 2.165 3.038M12 13.028a3.31 3.31 0 1 0 0-6.619a3.31 3.31 0 0 0 0 6.619"/>
+                                <rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6"/>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+                <li class="menu_item">
+                    <a href="{% url 'cart' %}" title="Корзина">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 512 512">
+                            <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="25"/>
+                            <circle cx="400" cy="416" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="25"/>
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="25" d="M48 80h64l48 272h256"/>
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="25" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    {% block content %}
+
+    <section class="main_image">
+        <h1>AssorTEA</h1>
+        <p>Чай - уникальный живой продукт, который ассоциируется с положительными эмоциями. 
+            Чай не может навредить и не имеет ограничений по возрасту и состоянию здоровья. 
+            Чай это настроение и состояние духа, культура и традиции, вкус и аромат. 
+            Чай не заменяет другие напитки, но вкусно и интересно дополняет нашу жизнь.</p>
+    </section>
+
+    <section class="type_tea">
+        <h2>Классификация чая</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="{% static 'images/varieties/white.png' %}">
+                <h3>Белый чай</h3>
+                <p>По полезным свойствам и содержанию витаминов наиболее близок к живому листу чайного дерева.</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/varieties/green.png' %}">
+                <h3>Зеленый чай</h3>
+                <p>Его главная особенность состоит в технологии обработки, 
+                    которая стабилизирует вкусовые и ароматические оттенки.
+                </p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/varieties/yellow.png' %}">
+                <h3>Желтый чай</h3>
+                <p>Удивительный, очень редкий вид чая. 
+                    Он обладает чрезвычайно мягким, нежным вкусом с едва уловимой терпкостью и яркой крепостью.</p>
+            </div>
+        </div>
+        <div class="cards">
+            <div class="card">
+                <img src="{% static 'images/varieties/ylyn.png' %}">
+                <h3>Чай Улун</h3>
+                <p>Обладает ярко выраженным цветочным или травяным ароматом, нежным вкусом и продолжительным послевкусием.
+                    Вкус и степень ферментации чая могут сильно варьироваться.
+                </p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/varieties/black.png' %}">
+                <h3>Черный чай</h3>
+                <p>Нестареющая классика, которая известна всем и каждому.
+                    Обладает ярким насыщенным вкусом, продолжительным послевкусием и в разной степени выраженной терпкостью.
+                </p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/varieties/black.png' %}">
+                <h3>Чай Пу-Эр</h3>
+                <p>Это древнейший напиток, ценность которого увеличивается с каждым годом. 
+                    В чае присутствует горечь и землистое послевкусие, 
+                    которое придает ему неповторимый утонченный оттенок.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="information">
+        <h2>Пейте чай, наслаждаясь моментом!</h2>
+        <p>
+            Чай – универсальный напиток в любой компании и в разных жизненных ситуациях. 
+            Он бодрит и успокаивает, согревает и охлаждает, разбавляет одиночество и составляет компанию, 
+            сглаживает острые углы и помогает поддерживать беседу, собирает за одним столом и греет душу, 
+            расслабляет и тонизирует, а главное – вселяет оптимизм и дарит душевное равновесие!
+        </p>
+    </section>
+
+    <section class="adventages">
+        <h2>Наши преимущества</h2>
+        <div class="cards"> 
+            <div class="card">
+                <img src="{% static 'images/adventages/assortiment.png' %}">
+                <h3>Широкий ассортимент</h3>
+                <p>У нас Вы можете найти разные сорты чая со всего мира. 
+                    Более 100 сортов чая представлены в нашем магазине.</p>
+            </div>
+            <div class="card"> 
+                <img src="{% static 'images/adventages/quality.png' %}">
+                <h3>Контроль качества</h3>
+                <p>Мы контролируем качество – от поставщика до покупателя. 
+                    Для хранения мы используем самое современное оборудование.</p>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/adventages/present.png' %}">
+                <h3>Подарочная упаковка</h3>
+                <p>Мы всегда упаковываем ваши заказы с любовью и заботой.
+                    Вы можете покупать наши товары в подарок свои близким.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback">
+        <h2>Обратная связь</h2>
+        <form method="post" action="/feedback/">
+            <label for="name">Введите имя:</label>
+            <input type="text" id="name" autocomplete="off" placeholder="Фамилия Имя" required>
+            <label for="email">Введите адрес электронной почты:</label>
+            <input type="email" id="email" autocomplete="email" placeholder="Электронная почта" required>
+            <label for="text">Напишите ваше сообщение:</label>
+            <textarea rows="5" id="text" placeholder="Сообщение..." required></textarea>
+            <button>Отправить</button>
+        </form>
+    </section>
+
+    {% endblock %}
+
+    <footer>
+        <div class="navigation">
+            <ul class="menu">
+                <li class="menu_item">
+                    <a href="/">Главная</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/catalog/">Каталог</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/orders/">Заказы</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/cart/">Корзина</a>
+                </li>
+                <li class="menu_item">
+                    <a href="/about/">О нас</a>
+                </li>
+            </ul>
+            <ul class="menu">
+                <li class="menu_item">
+                    <a href="#">Классификация чая</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#">Наши преимущества</a>
+                </li>
+                <li class="menu_item">
+                    <a href="#">Обратная связь</a>
+                </li>
+            </ul>
+        </div>
+        <div class="address">
+            <div class="logo">
+                <img src="{% static 'images/logo_w.png' %}" alt="ASSORTEA">
+                <h1>AssorTEA</h1>
+            </div>
+            <ul class="address_items">
+                <li><b>+ 7 (977) 777-77-77</b></li>
+                <li><b>+ 7 (977) 777-77-77</b></li>
+                <hr/>
+                <li>ул. Александро-Заводская, д. 30,</li>
+                <li>Чита, Забайкальский край, 672039</li>
+            </ul>
+        </div>
+    </footer>
+    <section class="copyright"> 
+		<p>&copy; 2025 <a href="https://github.com/yongsatur" target="_blank" title="Перейти на GitHub разработчика">
+			<strong>YONGSATUR</strong>
+		</a>. All Rights Reserved.</p>
+	</section>
+
+    <div id="snackbar"></div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

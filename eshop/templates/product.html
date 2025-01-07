@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="info_product">
+    <div class="image_product">
+        <img src="{{product.image.url}}">
+    </div>
+    <div class="description">
+        <h2>{{product.name}}</h2>
+        <p class="price">{{product.price}} ₽</p>
+        <p>{{product.description}}</p>
+        <div class="character">
+            <p>Вес</p>
+            <p>{{product.weight}} г.</p>
+        </div>
+        {% if product.sortID %}
+            <div class="character">
+                <p>Сорт чая</p>
+                <p>{{product.sortID}}</p>
+            </div>
+        {% endif %}
+        {% if product.countryID %}
+            <div class="character">
+                <p>Страна происхождения</p>
+                <p>{{product.countryID}}</p>
+            </div>
+        {% endif %}
+        <form action="{% url 'cart_add' product.id %}" method="POST" class="cartAddForm" id="cartAddForm">
+            {% csrf_token %}
+            <button type="submit">В корзину</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

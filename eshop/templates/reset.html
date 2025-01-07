@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="registration">
+    <div>
+        <h2>Смена пароля</h2>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" action="{% url 'reset' %}">
+            {% csrf_token %}
+            <label for="old_password">Введите старый пароль:</label>
+            <input type="password" id="old_password" name="old_password" placeholder="Пароль" required>
+            <label for="new_password1">Придумайте новый пароль:</label>
+            <input type="password" id="new_password1" name="new_password1" autocomplete="new-password" placeholder="Пароль"
+                title="Пароль должен содержать как минимум 8 символов и не должен состоять только из цифр" required>
+            <label for="new_password2">Повторите новый пароль:</label>
+            <input type="password" id="new_password2" name="new_password2" autocomplete="off" placeholder="Пароль"
+                title="Пароль должен содержать как минимум 8 символов и не должен состоять только из цифр" required>
+            <button type="submit">Сменить пароль</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
