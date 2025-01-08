@@ -52,7 +52,7 @@
                 {% if product.image %}
                     <img src="{{product.image.url}}" alt="{{product.name}}">
                 {% else %}
-                    <img src="{% static 'images/no_image.jpg' %}">
+                    <img src="{% static 'images/no_image.png' %}">
                 {% endif %}
                 <h3>{{product.name}}</h3>
                 <p>{{product.price}} ₽</p>
