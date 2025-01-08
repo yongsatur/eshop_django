@@ -22,12 +22,18 @@
                             {% for item in order_items  %}
                                 {% if item.orderID == order %}
                                     <div class="order_list">
-                                        <p>{{item.productID.name}} - {{item.quantity}}</p>
-                                        <p>{{item.productID.price}} ₽</p>
+                                        <p>{{item.productID.name}}</p>
+                                        <div class="items">
+                                            <p>{{item.productID.price}} ₽</p>
+                                            <p>x</p>
+                                            <p>{{item.quantity}}</p>
+                                            <p>=</p>
+                                            <p>{{item.get_amount}} ₽</p>
+                                        </div>
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                            <p><b>Вес: {{order.get_total_weight}} г.</b></p>
+                            <p><b>Общий вес товаров в заказе: {{order.get_total_weight}} г.</b></p>
                         </div>
                         <p class="price">{{order.get_total_amount}} ₽</p>
                     </div>

@@ -269,6 +269,19 @@ button svg {
     text-align: left;
 }
 
+.about {
+    text-align: center;
+    padding: 25px 350px 100px;
+}
+.about h2 {
+    padding-bottom: 50px;
+}
+.about img {
+    width: 70px;
+    height: auto;
+    margin-top: 25px;
+}
+
 .sort {
     display: flex;
     justify-content: space-between;
@@ -295,7 +308,7 @@ button svg {
     padding: 25px 70px 50px;
 }
 .catalog .categories {
-    width: 25%;
+    width: 20%;
 }
 .catalog .categories a:hover h3 {
     color: #759242;
@@ -305,13 +318,19 @@ button svg {
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    margin-left: 25px;
 }
 .catalog .product {
+    display: flex;
     text-align: center;
-    padding: 25px 30px;
-    margin: 10px;
+    width: 150px;
+    padding: 25px;
+    margin: 0 0 20px 20px;
     border: #f2f2ef solid 2px;
     border-radius: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 .catalog .product:hover {
     border: #759242 solid 2px;
@@ -376,12 +395,6 @@ button svg {
     height: 35px;
 	border-radius: 0 10px 10px 0;
 }
-.cart_data .product .items {
-    display: flex;
-}
-.cart_data .product .items p {
-    padding-right: 15px;
-}
 .cart_data .product .buttons p {
     height: 35px;
     padding: 0 25px;
@@ -402,6 +415,13 @@ button svg {
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+}
+
+.items {
+    display: flex;
+}
+.items p {
+    padding-right: 10px;
 }
 
 .info_product {
@@ -513,6 +533,9 @@ button svg {
 .user_orders .orders .order .order_list {
     display: flex;
     justify-content: space-between;
+}
+.user_orders .orders .order .order_list p {
+    padding-right: 10px;
 }
 .user_orders .account {
     text-align: center;

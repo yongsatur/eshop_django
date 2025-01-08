@@ -15,6 +15,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
 def products(request, category_slug = None):
     categoryID = None
     categories = Category.objects.all()

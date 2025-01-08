@@ -9,7 +9,7 @@
         <div class="select">
             <p>Сортировка по: </p>
             <select name="select">
-                <option>По умолчанию</option>
+                <option value="default">По умолчанию</option>
                 <option value="asc" {% if sort == 'asc' %} selected {% endif %}>По возрастанию цены</option>
                 <option value="desc" {% if sort == 'desc' %} selected {% endif %}>По убыванию цены</option>
             </select>

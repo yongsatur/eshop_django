@@ -25,8 +25,9 @@
                             <img src="{% static 'images/no_image.jpg' %}">
                         {% endif %}
                         <h3>{{item.productID.name}}</h3>
-                        <p>{{item.productID.price}} ₽</p>
+                        <p>Цена: {{item.productID.price}} ₽</p>
                         <p>Количество: {{item.quantity}}</p>
+                        <p>Итого: <b>{{item.get_amount}} ₽</b></p>
                     </div>
                 {% endfor %}
             </div>

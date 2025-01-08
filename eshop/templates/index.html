@@ -31,7 +31,7 @@
                     <a href="{% url 'cart' %}">Корзина</a>
                 </li>
                 <li class="menu_item">
-                    <a href="#">О нас</a>
+                    <a href="/about/">О нас</a>
                 </li>
             </ul>
         </nav>
@@ -114,7 +114,7 @@
             Чай не заменяет другие напитки, но вкусно и интересно дополняет нашу жизнь.</p>
     </section>
 
-    <section class="type_tea">
+    <section class="type_tea" id="type_tea">
         <h2>Классификация чая</h2>
         <div class="cards">
             <div class="card">
@@ -172,7 +172,7 @@
         </p>
     </section>
 
-    <section class="adventages">
+    <section class="adventages" id="adventages">
         <h2>Наши преимущества</h2>
         <div class="cards"> 
             <div class="card">
@@ -197,7 +197,7 @@
         </div>
     </section>
 
-    <section class="feedback">
+    <section class="feedback" id="feedback">
         <h2>Обратная связь</h2>
         <form method="post" action="/feedback/">
             <label for="name">Введите имя:</label>
@@ -233,13 +233,13 @@
             </ul>
             <ul class="menu">
                 <li class="menu_item">
-                    <a href="#">Классификация чая</a>
+                    <a href="#type_tea">Классификация чая</a>
                 </li>
                 <li class="menu_item">
-                    <a href="#">Наши преимущества</a>
+                    <a href="#adventages">Наши преимущества</a>
                 </li>
                 <li class="menu_item">
-                    <a href="#">Обратная связь</a>
+                    <a href="#feedback">Обратная связь</a>
                 </li>
             </ul>
         </div>
