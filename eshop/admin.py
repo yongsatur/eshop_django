@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Sort, Country, Product, Cart, CartItem, Order, OrderItem
+from .models import Category, Sort, Country, Product, Order, OrderItem
 
 
 class CategoryAdmin(admin.ModelAdmin):
